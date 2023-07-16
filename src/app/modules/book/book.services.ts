@@ -5,6 +5,10 @@ const addBook = async (payload: IBook) => {
   const addedBook = await Book.create(payload);
   return addedBook;
 };
+const getBooks = async () => {
+  const addedBook = await Book.find();
+  return addedBook;
+};
 const editBook = async (id: string, data: Partial<IBook>) => {
   const addedBook = await Book.findOneAndUpdate({ _id: id }, data, {
     new: true,
@@ -20,4 +24,5 @@ export const BookServices = {
   addBook,
   editBook,
   deleteBook,
+  getBooks,
 };

@@ -15,6 +15,18 @@ const addBook = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const addedBook = yield book_model_1.Book.create(payload);
     return addedBook;
 });
+const editBook = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    const addedBook = yield book_model_1.Book.findOneAndUpdate({ _id: id }, data, {
+        new: true,
+    });
+    return addedBook;
+});
+const deleteBook = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const addedBook = yield book_model_1.Book.findOneAndDelete({ _id: id });
+    return addedBook;
+});
 exports.BookServices = {
     addBook,
+    editBook,
+    deleteBook,
 };

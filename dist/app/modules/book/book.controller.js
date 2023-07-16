@@ -23,10 +23,35 @@ const addBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, vo
         statusCode: http_status_1.default.OK,
         success: true,
         message: "Book added successfully",
-        data: result
+        data: result,
+    });
+    next();
+}));
+const editBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const data = req.body;
+    const result = yield book_services_1.BookServices.editBook(id, data);
+    (0, utils_1.sendResponse)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Book updated successfully",
+        data: result,
+    });
+    next();
+}));
+const deleteBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield book_services_1.BookServices.deleteBook(id);
+    (0, utils_1.sendResponse)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Book deleted successfully",
+        data: result,
     });
     next();
 }));
 exports.BookController = {
     addBook,
+    editBook,
+    deleteBook,
 };

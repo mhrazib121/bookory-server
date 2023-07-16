@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+import httpStatus from "http-status";
 import { catchAsync, sendResponse } from "../../../utils";
 import { BookServices } from "./book.services";
-import httpStatus from "http-status";
 
 const addBook = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -12,6 +12,19 @@ const addBook = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: "Book added successfully",
+      data: result,
+    });
+    next();
+  }
+);
+const getBooks = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await BookServices.getBooks();
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book  List",
       data: result,
     });
     next();
@@ -49,6 +62,7 @@ const deleteBook = catchAsync(
 
 export const BookController = {
   addBook,
+  getBooks,
   editBook,
   deleteBook,
 };
