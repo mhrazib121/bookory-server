@@ -5,6 +5,15 @@ import { BookController } from "./book.controller";
 
 const router = express.Router();
 
-router.post("/add-book", validateRequest(BookValidation.addBookZodSchema), BookController.addBook);
+router.post(
+  "/add-book",
+  validateRequest(BookValidation.addBookZodSchema),
+  BookController.addBook
+);
+router.patch(
+  "/:id",
+  //   validateRequest(BookValidation.addBookZodSchema),
+  BookController.editBook
+);
 
 export const BookRoutes = router;

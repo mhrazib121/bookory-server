@@ -13,7 +13,7 @@ const addBookZodSchema = zod_1.z.object({
         genre: zod_1.z.string({
             required_error: "Genre is required",
         }),
-        publicationDate: zod_1.z.date({
+        publicationDate: zod_1.z.string({
             required_error: "Publication Date is required",
         }),
     }),
