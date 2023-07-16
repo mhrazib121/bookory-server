@@ -11,8 +11,6 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const auth_validation_1 = require("./auth.validation");
 const router = express_1.default.Router();
 router.post("/signup", (0, validateRequest_1.default)(user_validation_1.UserValidation.createUserZodSchema), auth_controller_1.AuthController.userSignup);
-router.post("/login", 
-// validateRequest(AuthValidation.loginZodSchema),
-auth_controller_1.AuthController.loginUser);
+router.post("/login", (0, validateRequest_1.default)(auth_validation_1.AuthValidation.loginUserZodSchema), auth_controller_1.AuthController.loginUser);
 router.post("/refresh-token", (0, validateRequest_1.default)(auth_validation_1.AuthValidation.refreshTokenZodSchema), auth_controller_1.AuthController.refreshToken);
 exports.AuthRoutes = router;
