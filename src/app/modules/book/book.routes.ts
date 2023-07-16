@@ -10,10 +10,7 @@ router.post(
   validateRequest(BookValidation.addBookZodSchema),
   BookController.addBook
 );
-router.patch(
-  "/:id",
-  //   validateRequest(BookValidation.addBookZodSchema),
-  BookController.editBook
-);
+router.patch("/:id", BookController.editBook);
+router.delete("/:id", BookController.deleteBook);
 
 export const BookRoutes = router;

@@ -11,8 +11,13 @@ const editBook = async (id: string, data: Partial<IBook>) => {
   });
   return addedBook;
 };
+const deleteBook = async (id: string) => {
+  const addedBook = await Book.findOneAndDelete({ _id: id });
+  return addedBook;
+};
 
 export const BookServices = {
   addBook,
   editBook,
+  deleteBook,
 };
