@@ -11,7 +11,7 @@ router.post(
   validateRequest(BookValidation.addBookZodSchema),
   BookController.addBook
 );
-router.get("/", BookController.getOneBook);
+router.get("/:id", BookController.getOneBook);
 router.patch("/:id", BookController.editBook);
 router.delete("/:id", BookController.deleteBook);
 
