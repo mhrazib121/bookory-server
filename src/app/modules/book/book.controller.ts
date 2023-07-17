@@ -30,6 +30,20 @@ const getBooks = catchAsync(
     next();
   }
 );
+const getOneBook = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const result = await BookServices.getOneBook(id);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Get one Book",
+      data: result,
+    });
+    next();
+  }
+);
 const editBook = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
@@ -63,6 +77,7 @@ const deleteBook = catchAsync(
 export const BookController = {
   addBook,
   getBooks,
+  getOneBook,
   editBook,
   deleteBook,
 };
