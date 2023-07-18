@@ -9,7 +9,9 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const book_validation_1 = require("./book.validation");
 const book_controller_1 = require("./book.controller");
 const router = express_1.default.Router();
+router.get("/", book_controller_1.BookController.getBooks);
 router.post("/add-book", (0, validateRequest_1.default)(book_validation_1.BookValidation.addBookZodSchema), book_controller_1.BookController.addBook);
+router.get("/:id", book_controller_1.BookController.getOneBook);
 router.patch("/:id", book_controller_1.BookController.editBook);
 router.delete("/:id", book_controller_1.BookController.deleteBook);
 exports.BookRoutes = router;

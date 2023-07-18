@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookController = void 0;
+const http_status_1 = __importDefault(require("http-status"));
 const utils_1 = require("../../../utils");
 const book_services_1 = require("./book.services");
-const http_status_1 = __importDefault(require("http-status"));
 const addBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const book = req.body;
     const result = yield book_services_1.BookServices.addBook(book);
@@ -23,6 +23,27 @@ const addBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, vo
         statusCode: http_status_1.default.OK,
         success: true,
         message: "Book added successfully",
+        data: result,
+    });
+    next();
+}));
+const getBooks = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield book_services_1.BookServices.getBooks();
+    (0, utils_1.sendResponse)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Book  List",
+        data: result,
+    });
+    next();
+}));
+const getOneBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield book_services_1.BookServices.getOneBook(id);
+    (0, utils_1.sendResponse)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Get one Book",
         data: result,
     });
     next();
@@ -52,6 +73,8 @@ const deleteBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0,
 }));
 exports.BookController = {
     addBook,
+    getBooks,
+    getOneBook,
     editBook,
     deleteBook,
 };
