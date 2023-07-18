@@ -1,4 +1,4 @@
-import httpStatus from 'http-status';
+import httpStatus from "http-status";
 import { RequestHandler } from "express";
 import { sendResponse } from "../../../utils";
 import { IUser } from "./user.interface";
@@ -100,7 +100,6 @@ const getMyProfile: RequestHandler = async (req, res, next) => {
       message: "Get profile retrieved successfully!",
       data: result,
     });
-    // console.log("token", token);
   } catch (error) {
     next(error);
   }

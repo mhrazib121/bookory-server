@@ -35,9 +35,9 @@ const getOneUser = async (id: string): Promise<IUser | null> => {
 const getMyProfile = async (token: string | undefined) => {
   const decodedToken: any = jwt.decode(token as string);
 
-  const { userPhoneNumber } = decodedToken;
+  const { userEmail } = decodedToken;
 
-  const getProfile = await User.findOne({ email: userPhoneNumber });
+  const getProfile = await User.findOne({ email: userEmail });
   return {
     getProfile,
   };

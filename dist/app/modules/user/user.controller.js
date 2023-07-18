@@ -111,7 +111,6 @@ const getMyProfile = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
             message: "Get profile retrieved successfully!",
             data: result,
         });
-        // console.log("token", token);
     }
     catch (error) {
         next(error);
