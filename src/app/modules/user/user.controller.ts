@@ -98,7 +98,7 @@ const getMyProfile: RequestHandler = async (req, res, next) => {
       statusCode: httpStatus.OK,
       success: true,
       message: "Get profile retrieved successfully!",
-      data: result,
+      data: result.getProfile,
     });
   } catch (error) {
     next(error);

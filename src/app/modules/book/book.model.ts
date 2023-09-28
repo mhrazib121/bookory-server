@@ -11,6 +11,10 @@ const bookSchema = new Schema<IBook, BookModel>(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+    },
     genre: {
       type: String,
       required: true,
@@ -19,6 +23,13 @@ const bookSchema = new Schema<IBook, BookModel>(
       type: String,
       required: true,
     },
+    reviews: [
+      {
+        email: String,
+        name: String,
+        message: String,
+      },
+    ],
   },
   {
     timestamps: true,

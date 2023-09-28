@@ -10,12 +10,22 @@ const addBookZodSchema = zod_1.z.object({
         author: zod_1.z.string({
             required_error: "Author name is required",
         }),
+        email: zod_1.z.string({
+            required_error: "Authorized email is required",
+        }),
         genre: zod_1.z.string({
             required_error: "Genre is required",
         }),
         publicationDate: zod_1.z.string({
             required_error: "Publication Date is required",
         }),
+        reviews: zod_1.z
+            .object({
+            name: zod_1.z.string(),
+            email: zod_1.z.string(),
+            message: zod_1.z.string(),
+        })
+            .array(),
     }),
 });
 exports.BookValidation = {

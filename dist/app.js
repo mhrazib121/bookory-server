@@ -18,9 +18,9 @@ app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded());
 app.use("/api/v1", routes_1.default);
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 app.use(globalErrorHandler_1.default);
 //handle not found
 app.use((req, res, next) => {

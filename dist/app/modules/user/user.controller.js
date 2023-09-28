@@ -109,7 +109,7 @@ const getMyProfile = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
             statusCode: http_status_1.default.OK,
             success: true,
             message: "Get profile retrieved successfully!",
-            data: result,
+            data: result.getProfile,
         });
     }
     catch (error) {

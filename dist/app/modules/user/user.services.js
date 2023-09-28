@@ -42,10 +42,8 @@ const getOneUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 const getMyProfile = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    // console.log(token);
     const decodedToken = jsonwebtoken_1.default.decode(token);
     const { userEmail } = decodedToken;
-    console.log(decodedToken);
     const getProfile = yield user_model_1.User.findOne({ email: userEmail });
     return {
         getProfile,

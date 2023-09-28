@@ -5,6 +5,15 @@ export type IBook = {
   author: string;
   genre: string;
   publicationDate: string;
+  email: string;
+  imgUrl: string;
+  reviews: [
+    {
+      name?: string;
+      email?: string;
+      message?: string;
+    }
+  ];
 };
 
 export type BookModel = Model<IBook>;
