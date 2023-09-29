@@ -15,6 +15,10 @@ const bookSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    imgUrl: {
+        type: String,
+        required: true,
+    },
     genre: {
         type: String,
         required: true,

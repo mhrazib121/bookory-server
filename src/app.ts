@@ -1,9 +1,9 @@
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
+import httpStatus from "http-status";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import routes from "./app/routes";
-import httpStatus from "http-status";
-import cookieParser from "cookie-parser";
 const app: Application = express();
 
 // cors use
@@ -17,10 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use("/api/v1", routes);
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 app.use(globalErrorHandler);
 
@@ -37,6 +33,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     ],
   });
   next();
+});
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 export default app;

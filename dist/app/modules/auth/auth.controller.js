@@ -31,7 +31,6 @@ const auth_services_1 = require("./auth.services");
 const userSignup = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = req.body;
-        console.log(user);
         const result = yield auth_services_1.AuthServices.userSignUp(user);
         (0, utils_1.sendResponse)(res, {
             statusCode: http_status_1.default.OK,
@@ -44,7 +43,7 @@ const userSignup = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         next(error);
     }
 });
-const loginUser = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const loginUser = (0, utils_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loginData = __rest(req.body, []);
     const result = yield auth_services_1.AuthServices.loginUser(loginData);
     const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
@@ -59,7 +58,7 @@ const loginUser = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, 
         message: "User logged in successfully !",
         data: others,
     });
-    next();
+    // next();
 }));
 const refreshToken = (0, utils_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { refreshToken } = req.cookies;

@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { BookModel, IBook } from "./book.interface";
 
-const bookSchema = new Schema<IBook, BookModel>(
+export const bookSchema = new Schema<IBook, BookModel>(
   {
     title: {
       type: String,
@@ -12,6 +12,10 @@ const bookSchema = new Schema<IBook, BookModel>(
       required: true,
     },
     email: {
+      type: String,
+      required: true,
+    },
+    imgUrl: {
       type: String,
       required: true,
     },

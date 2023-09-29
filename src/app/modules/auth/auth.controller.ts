@@ -1,5 +1,5 @@
 import httpStatus from "http-status";
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import config from "../../../config";
 import { catchAsync, sendResponse } from "../../../utils";
 import { ILoginUserResponse, IRefreshTokenResponse } from "./auth.interface";
@@ -8,7 +8,6 @@ import { AuthServices } from "./auth.services";
 const userSignup: RequestHandler = async (req, res, next) => {
   try {
     const user = req.body;
-    console.log(user);
     const result = await AuthServices.userSignUp(user);
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -21,28 +20,26 @@ const userSignup: RequestHandler = async (req, res, next) => {
   }
 };
 
-const loginUser = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { ...loginData } = req.body;
-    const result = await AuthServices.loginUser(loginData);
-    const { refreshToken, ...others } = result;
+const loginUser = catchAsync(async (req: Request, res: Response) => {
+  const { ...loginData } = req.body;
+  const result = await AuthServices.loginUser(loginData);
+  const { refreshToken, ...others } = result;
 
-    const cookiesOption = {
-      secure: config.env === "production" ? true : false,
-      httpOnly: true,
-    };
+  const cookiesOption = {
+    secure: config.env === "production" ? true : false,
+    httpOnly: true,
+  };
 
-    res.cookie("refreshToken", refreshToken, cookiesOption);
+  res.cookie("refreshToken", refreshToken, cookiesOption);
 
-    sendResponse<ILoginUserResponse>(res, {
-      statusCode: 200,
-      success: true,
-      message: "User logged in successfully !",
-      data: others,
-    });
-    next();
-  }
-);
+  sendResponse<ILoginUserResponse>(res, {
+    statusCode: 200,
+    success: true,
+    message: "User logged in successfully !",
+    data: others,
+  });
+  // next();
+});
 
 const refreshToken = catchAsync(async (req: Request, res: Response) => {
   const { refreshToken } = req.cookies;
