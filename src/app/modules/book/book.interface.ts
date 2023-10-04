@@ -16,4 +16,10 @@ export type IBook = {
   ];
 };
 
+export type IBookQuery = {
+  searchText?: string;
+  genre?: string;
+  publicationDate?: string;
+};
+
 export type BookModel = Model<IBook>;

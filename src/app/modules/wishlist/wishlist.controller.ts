@@ -17,6 +17,20 @@ const addWishBook = catchAsync(
     next();
   }
 );
+const removeWishBook = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const wishlistData = req.body;
+    const data = await WishlistServices.removeWishBook(wishlistData);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book removed from whitelist successfully",
+      data: data,
+    });
+    next();
+  }
+);
 const getWishlist = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const data = await WishlistServices.getWishlist();
@@ -33,5 +47,6 @@ const getWishlist = catchAsync(
 
 export const WishlistController = {
   addWishBook,
+  removeWishBook,
   getWishlist,
 };

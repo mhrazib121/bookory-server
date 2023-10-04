@@ -19,7 +19,8 @@ const addBook = catchAsync(
 );
 const getBooks = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const result = await BookServices.getBooks();
+    console.log(req.query);
+    const result = await BookServices.getBooks(req.query);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
