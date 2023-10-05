@@ -35,3 +35,9 @@ export type IPaginationOptionResult = {
   sortBy: string;
   sortOrder: SortOrder;
 };
+export type IAddReview = {
+  name: string;
+  email: string;
+  feedback: string;
+  rating: number;
+};

@@ -15,6 +15,7 @@ const userSchema = new Schema<IUser, UserModel>(
       type: String,
       required: true,
       select: 0,
+      unique: true,
     },
     name: {
       firstName: {
