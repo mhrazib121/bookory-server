@@ -44,9 +44,26 @@ const getWishlist = catchAsync(
     next();
   }
 );
+const updateReadingStatus = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const updateData = req.body;
+    const id = req.params.id;
+    console.log("9d", id);
+    const data = await WishlistServices.updateReadingStatus(id, updateData);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book removed from whitelist successfully",
+      data: data,
+    });
+    next();
+  }
+);
 
 export const WishlistController = {
   addWishBook,
   removeWishBook,
   getWishlist,
+  updateReadingStatus,
 };

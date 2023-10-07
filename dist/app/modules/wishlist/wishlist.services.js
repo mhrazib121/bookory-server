@@ -35,8 +35,22 @@ const removeWishBook = (payload) => __awaiter(void 0, void 0, void 0, function* 
 const getWishlist = () => __awaiter(void 0, void 0, void 0, function* () {
     return yield wishlist_model_1.Wishlist.find();
 });
+const updateReadingStatus = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const specificUserWishlist = yield wishlist_model_1.Wishlist.findOne({ email: payload.email });
+    if (specificUserWishlist) {
+        const findTheBook = specificUserWishlist.data.find(book => book._id == id);
+        if (findTheBook) {
+            findTheBook.readingStatus = payload.status;
+        }
+        console.log("after", findTheBook);
+        const result = yield specificUserWishlist.save();
+        return result;
+        // const updatedBook = {...findTheBook, }
+    }
+});
 exports.WishlistServices = {
     addWishlist,
     removeWishBook,
     getWishlist,
+    updateReadingStatus,
 };

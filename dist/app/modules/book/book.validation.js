@@ -19,6 +19,7 @@ const addBookZodSchema = zod_1.z.object({
         publicationDate: zod_1.z.string({
             required_error: "Publication Date is required",
         }),
+        readingStatus: zod_1.z.string().optional(),
         reviews: zod_1.z
             .object({
             name: zod_1.z.string(),

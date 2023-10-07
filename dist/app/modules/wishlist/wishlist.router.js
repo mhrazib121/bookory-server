@@ -10,4 +10,5 @@ const router = express_1.default.Router();
 router.get("/", wishlist_controller_1.WishlistController.getWishlist);
 router.post("/add-wishbook", wishlist_controller_1.WishlistController.addWishBook);
 router.delete("/remove-wishbook", wishlist_controller_1.WishlistController.removeWishBook);
+router.patch("/updateStatus/:id", wishlist_controller_1.WishlistController.updateReadingStatus);
 exports.WishlistRoutes = router;

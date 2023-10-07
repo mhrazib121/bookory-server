@@ -17,6 +17,7 @@ const addBookZodSchema = z.object({
     publicationDate: z.string({
       required_error: "Publication Date is required",
     }),
+    readingStatus: z.string().optional(),
     reviews: z
       .object({
         name: z.string(),
