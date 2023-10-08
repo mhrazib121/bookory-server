@@ -38,6 +38,16 @@ const removeWishBook = (0, utils_1.catchAsync)((req, res, next) => __awaiter(voi
     });
     next();
 }));
+const getSingleWishlist = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = yield wishlist_services_1.WishlistServices.getSingleWishlist(req.query);
+    (0, utils_1.sendResponse)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Whitelist retrieve successfully",
+        data: data,
+    });
+    next();
+}));
 const getWishlist = (0, utils_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const data = yield wishlist_services_1.WishlistServices.getWishlist();
     (0, utils_1.sendResponse)(res, {
@@ -65,5 +75,6 @@ exports.WishlistController = {
     addWishBook,
     removeWishBook,
     getWishlist,
+    getSingleWishlist,
     updateReadingStatus,
 };

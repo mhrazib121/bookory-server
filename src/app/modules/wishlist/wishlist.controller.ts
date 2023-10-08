@@ -31,6 +31,19 @@ const removeWishBook = catchAsync(
     next();
   }
 );
+const getSingleWishlist = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const data = await WishlistServices.getSingleWishlist(req.query);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Whitelist retrieve successfully",
+      data: data,
+    });
+    next();
+  }
+);
 const getWishlist = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const data = await WishlistServices.getWishlist();
@@ -65,5 +78,6 @@ export const WishlistController = {
   addWishBook,
   removeWishBook,
   getWishlist,
+  getSingleWishlist,
   updateReadingStatus,
 };

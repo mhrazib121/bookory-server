@@ -1,3 +1,5 @@
+import httpStatus from "http-status";
+import { ApiError } from "../../../errors";
 import { IBook } from "../book/book.interface";
 import { Wishlist } from "./wishlist.model";
 
@@ -36,6 +38,23 @@ const removeWishBook = async (payload: IPayload) => {
 const getWishlist = async () => {
   return await Wishlist.find();
 };
+const getSingleWishlist = async (query: { email?: string; id?: string }) => {
+  const { email, id } = query;
+  const specificUserWishlist = await Wishlist.findOne({ email: email });
+  if (specificUserWishlist) {
+    const findTheBook = specificUserWishlist.data.find(book => book._id == id);
+    if (findTheBook) {
+      return findTheBook;
+    } else {
+      throw new ApiError(httpStatus.NOT_FOUND, "This Book is not found");
+    }
+  } else {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      "This User's wishlist does not found"
+    );
+  }
+};
 
 const updateReadingStatus = async (
   id: string,
@@ -55,5 +74,6 @@ export const WishlistServices = {
   addWishlist,
   removeWishBook,
   getWishlist,
+  getSingleWishlist,
   updateReadingStatus,
 };
